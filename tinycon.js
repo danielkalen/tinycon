@@ -119,9 +119,7 @@
     var context = getCanvas().getContext("2d");
     var color = color || '#000000';
     var src = getCurrentFavicon();
-
-    faviconImage = document.createElement('img');
-    faviconImage.onload = function() {
+    var draw = function() {
 
       // clear canvas
       context.clearRect(0, 0, size, size);
@@ -135,6 +133,10 @@
       // refresh tag in page
       refreshFavicon();
     };
+
+    faviconImage = document.createElement('img');
+    faviconImage.onload = draw;
+    draw()
 
     // allow cross origin resource requests if the image is not a data:uri
     // as detailed here: https://github.com/mrdoob/three.js/issues/1305
